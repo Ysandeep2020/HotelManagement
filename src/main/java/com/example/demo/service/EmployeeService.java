@@ -2,14 +2,14 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.model.EmployeeRequest;
+import com.example.demo.model.EmployeeModel;
 
 public interface EmployeeService {
 
-	String add(EmployeeRequest request) throws Exception;
+	String add(EmployeeModel request) throws Exception;
 
-	EmployeeRequest findById(int id) throws Exception;
+	EmployeeModel findById(int id) throws Exception;
 
-	List<EmployeeRequest> fetchAll();
+	List<EmployeeModel> fetchAll();
 
 }

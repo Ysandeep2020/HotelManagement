@@ -7,7 +7,7 @@ import com.example.demo.entity.Room;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-public class HotelRequest {
+public class HotelModel {
 
 	private String name;
 	private String phone;
@@ -52,14 +52,14 @@ public class HotelRequest {
 		return "HotelRequest [name=" + name + ", phone=" + phone + ", address=" + address + ", rooms=" + rooms + "]";
 	}
 
-	public HotelRequest(String name, String phone, Address address, List<Room> rooms) {
+	public HotelModel(String name, String phone, Address address, List<Room> rooms) {
 		super();
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
 	}
 
-	public HotelRequest() {
+	public HotelModel() {
 		// TODO Auto-generated constructor stub
 	}
 }

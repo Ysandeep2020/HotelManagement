@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.EmployeeRequest;
-import com.example.demo.model.HotelRequest;
+import com.example.demo.model.EmployeeModel;
+import com.example.demo.model.HotelModel;
 import com.example.demo.service.HotelService;
 
 @RestController
@@ -22,17 +22,17 @@ public class HotelController {
 	private HotelService hotelService;
 
 	@PostMapping("/add")
-	public ResponseEntity<String> add(@RequestBody HotelRequest hotel) {
+	public ResponseEntity<String> add(@RequestBody HotelModel hotel) {
 		return ResponseEntity.ok().body(hotelService.add(hotel));
 	}
 
 	@GetMapping("/{id}")
-	public HotelRequest getById(@PathVariable int id) throws Exception {
+	public HotelModel getById(@PathVariable int id) throws Exception {
 		return hotelService.findById(id);
 	}
 	
 	@GetMapping("/all")
-	public List<HotelRequest> findAll() throws Exception {
+	public List<HotelModel> findAll() throws Exception {
 		return hotelService.fetchAll();
 	}
 }

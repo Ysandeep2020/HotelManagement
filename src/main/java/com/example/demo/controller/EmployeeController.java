@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.EmployeeRequest;
+import com.example.demo.model.EmployeeModel;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -20,17 +20,17 @@ public class EmployeeController {
 	private EmployeeService service;
 
 	@PostMapping("/add")
-	public String add(@RequestBody EmployeeRequest request) throws Exception {
+	public String add(@RequestBody EmployeeModel request) throws Exception {
 		return service.add(request);
 	}
 
 	@GetMapping("/{id}")
-	public EmployeeRequest getById(@PathVariable int id) throws Exception {
+	public EmployeeModel getById(@PathVariable int id) throws Exception {
 		return service.findById(id);
 	}
 
 	@GetMapping("/all")
-	public List<EmployeeRequest> findAll() throws Exception {
+	public List<EmployeeModel> findAll() throws Exception {
 		return service.fetchAll();
 	}
 }

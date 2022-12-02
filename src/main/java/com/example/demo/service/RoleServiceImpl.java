@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Role;
-import com.example.demo.model.RoleRequest;
+import com.example.demo.model.RoleModel;
 import com.example.demo.repository.RoleRepository;
 
 @Service
@@ -15,7 +15,7 @@ public class RoleServiceImpl implements RoleService {
 	@Autowired
 	private RoleRepository roleRepo;
 
-	public List<Role> addRoles(List<RoleRequest> request) {
+	public List<Role> addRoles(List<RoleModel> request) {
 		List<Role> roles = new ArrayList<Role>();
 		request.stream().forEach(role -> {
 			Role tempRole = new Role();

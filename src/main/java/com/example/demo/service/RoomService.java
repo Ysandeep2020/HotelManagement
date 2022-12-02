@@ -2,14 +2,14 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.model.RoomRequest;
+import com.example.demo.model.RoomModel;
 
 public interface RoomService {
 
-	String add(RoomRequest request) throws Exception;
+	String add(RoomModel request) throws Exception;
 
-	RoomRequest findById(int id) throws Exception;
+	RoomModel findById(int id) throws Exception;
 
-	List<RoomRequest> fetchAll();
+	List<RoomModel> fetchAll();
 
 }

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.RoomRequest;
-import com.example.demo.model.RoomTypeRequest;
+import com.example.demo.model.RoomModel;
+import com.example.demo.model.RoomTypeModel;
 import com.example.demo.service.RoomTypeService;
 
 @RestController
@@ -21,18 +21,18 @@ public class RoomTypeController {
 	private RoomTypeService service;
 
 	@PostMapping("/add")
-	public String add(@RequestBody RoomTypeRequest request) throws Exception {
+	public String add(@RequestBody RoomTypeModel request) throws Exception {
 		return service.add(request);
 	}
 
 	@GetMapping("/{id}")
-	public RoomTypeRequest getById(@PathVariable int id) throws Exception {
+	public RoomTypeModel getById(@PathVariable int id) throws Exception {
 		return service.findById(id);
 	}
 	
 	
 	@GetMapping("/all")
-	public List<RoomTypeRequest> findAll() throws Exception {
+	public List<RoomTypeModel> findAll() throws Exception {
 		return service.fetchAll();
 	}
 

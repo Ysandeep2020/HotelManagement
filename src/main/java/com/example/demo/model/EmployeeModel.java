@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.demo.entity.Role;
 
-public class EmployeeRequest {
+public class EmployeeModel {
 
 	private String firstName;
 	private String lastName;

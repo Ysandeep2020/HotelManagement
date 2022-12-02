@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class RoomTypeRequest {
+public class RoomTypeModel {
 
 	private double roomPrice;
 	private String roomDesc;
@@ -35,13 +35,13 @@ public class RoomTypeRequest {
 		return "RoomTypeRequest [roomPrice=" + roomPrice + ", roomDesc=" + roomDesc + ", roomId=" + roomId + "]";
 	}
 
-	public RoomTypeRequest(double roomPrice, String roomDesc) {
+	public RoomTypeModel(double roomPrice, String roomDesc) {
 		super();
 		this.roomPrice = roomPrice;
 		this.roomDesc = roomDesc;
 	}
 
-	public RoomTypeRequest() {
+	public RoomTypeModel() {
 		// TODO Auto-generated constructor stub
 	}
 }

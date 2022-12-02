@@ -6,7 +6,7 @@ import com.example.demo.entity.RoomType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-public class RoomRequest {
+public class RoomModel {
 
 	private String roomNumber;
 	private int hotelCode;
@@ -42,13 +42,13 @@ public class RoomRequest {
 		return "RoomRequest [roomNumber=" + roomNumber + ", hotelCode=" + hotelCode + ", roomType=" + roomType + "]";
 	}
 
-	public RoomRequest(String roomNumber, int hotelCode) {
+	public RoomModel(String roomNumber, int hotelCode) {
 		super();
 		this.roomNumber = roomNumber;
 		this.hotelCode = hotelCode;
 	}
 
-	public RoomRequest() {
+	public RoomModel() {
 		// TODO Auto-generated constructor stub
 	}
 }

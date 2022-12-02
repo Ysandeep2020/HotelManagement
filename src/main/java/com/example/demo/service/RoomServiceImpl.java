@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Room;
-import com.example.demo.model.RoomRequest;
+import com.example.demo.model.RoomModel;
 import com.example.demo.repository.HotelRepository;
 import com.example.demo.repository.RoomRepository;
 
@@ -21,7 +21,7 @@ public class RoomServiceImpl implements RoomService {
 	private HotelRepository hotelReop;
 
 	@Override
-	public String add(RoomRequest request) throws Exception {
+	public String add(RoomModel request) throws Exception {
 		Room room = new Room();
 		// update total Rooms into Hotel
 		Hotel hotel = updateRoomsToHotel(request);
@@ -31,7 +31,7 @@ public class RoomServiceImpl implements RoomService {
 		return "Room Added !";
 	}
 
-	private Hotel updateRoomsToHotel(RoomRequest request) throws Exception {
+	private Hotel updateRoomsToHotel(RoomModel request) throws Exception {
 		Hotel hotel = hotelReop.findById(request.getHotelCode())
 				.orElseThrow(() -> new Exception("Hotel Not avalable with this id:" + request.getHotelCode()));
 		int preTotal = hotel.getTotalRoom();
@@ -40,8 +40,8 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public RoomRequest findById(int id) throws Exception {
-		RoomRequest model = new RoomRequest();
+	public RoomModel findById(int id) throws Exception {
+		RoomModel model = new RoomModel();
 		Room room = repo.findById(id).orElseThrow(() -> new Exception("No Room with id:" + id));
 		BeanUtils.copyProperties(room, model);
 		model.setHotelCode(room.getHotelCode().getId());
@@ -49,11 +49,11 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<RoomRequest> fetchAll() {
-		List<RoomRequest> models = new ArrayList<>();
+	public List<RoomModel> fetchAll() {
+		List<RoomModel> models = new ArrayList<>();
 		List<Room> rooms = repo.findAll();
 		rooms.stream().forEach(room -> {
-			RoomRequest model = new RoomRequest();
+			RoomModel model = new RoomModel();
 			BeanUtils.copyProperties(room, model);
 			model.setHotelCode(room.getHotelCode().getId());
 			models.add(model);

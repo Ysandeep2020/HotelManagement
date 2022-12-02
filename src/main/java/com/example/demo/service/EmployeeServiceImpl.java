@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Employee;
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Role;
-import com.example.demo.model.EmployeeRequest;
+import com.example.demo.model.EmployeeModel;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.HotelRepository;
 import com.example.demo.repository.RoleRepository;
@@ -27,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private RoleRepository roleRepo;
 
 	@Override
-	public String add(EmployeeRequest request) throws Exception {
+	public String add(EmployeeModel request) throws Exception {
 		Employee emp = new Employee();
 		BeanUtils.copyProperties(request, emp);
 		Hotel hotel = hotelRepo.findById(request.getHotelId())
@@ -46,8 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeRequest findById(int id) throws Exception {
-		EmployeeRequest model = new EmployeeRequest();
+	public EmployeeModel findById(int id) throws Exception {
+		EmployeeModel model = new EmployeeModel();
 		Employee emp = repo.findById(id).orElseThrow(() -> new Exception("Employee Not found with :" + id));
 		BeanUtils.copyProperties(emp, model);
 		model.setHotelId(emp.getHotelId().getId());
@@ -55,11 +55,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeRequest> fetchAll() {
-		List<EmployeeRequest> models = new ArrayList<>();
+	public List<EmployeeModel> fetchAll() {
+		List<EmployeeModel> models = new ArrayList<>();
 		List<Employee> emps = repo.findAll();
 		emps.stream().forEach(emp -> {
-			EmployeeRequest model = new EmployeeRequest();
+			EmployeeModel model = new EmployeeModel();
 			BeanUtils.copyProperties(emp, model);
 			model.setHotelId(emp.getHotelId().getId());
 			models.add(model);

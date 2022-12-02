@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class RoleRequest {
+public class RoleModel {
 
 	private String role;
 

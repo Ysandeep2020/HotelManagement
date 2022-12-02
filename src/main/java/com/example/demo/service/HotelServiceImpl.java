@@ -7,10 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Employee;
 import com.example.demo.entity.Hotel;
-import com.example.demo.model.EmployeeRequest;
-import com.example.demo.model.HotelRequest;
+import com.example.demo.model.HotelModel;
 import com.example.demo.repository.HotelRepository;
 
 @Service
@@ -19,7 +17,7 @@ public class HotelServiceImpl implements HotelService {
 	private HotelRepository hotelRepo;
 
 	@Override
-	public String add(HotelRequest hotel) {
+	public String add(HotelModel hotel) {
 		Hotel entity = new Hotel();
 		// set default rating is : 0
 		entity.setRating(0);
@@ -29,19 +27,19 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public HotelRequest findById(int id) throws Exception {
-		HotelRequest model = new HotelRequest();
+	public HotelModel findById(int id) throws Exception {
+		HotelModel model = new HotelModel();
 		Hotel hotel = hotelRepo.findById(id).orElseThrow(() -> new Exception("Hotel Not found with :" + id));
 		BeanUtils.copyProperties(hotel, model);
 		return model;
 	}
 
 	@Override
-	public List<HotelRequest> fetchAll() {
-		List<HotelRequest> models = new ArrayList<>();
+	public List<HotelModel> fetchAll() {
+		List<HotelModel> models = new ArrayList<>();
 		List<Hotel> hotels = hotelRepo.findAll();
 		hotels.stream().forEach(hotel -> {
-			HotelRequest model = new HotelRequest();
+			HotelModel model = new HotelModel();
 			BeanUtils.copyProperties(hotel, model);
 			models.add(model);
 		});
