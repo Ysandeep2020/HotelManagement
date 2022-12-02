@@ -1,0 +1,45 @@
+
+After start proj  First of all add Some temprary data into your hotel
+Add Hotel  
+==========
+http://localhost:7878/hotel/add
+
+{
+    "name":"Hotel Ganesh",
+    "phone":"7568368845",
+     "address":{
+           "address":"vill -sihor",
+           "city":"jhunjhunu",
+           "state":"Rajasthan",
+           "pincode":333036
+     }
+}
+
+
+Add Rooms
+==========
+http://localhost:7878/room/add
+{
+    "roomNumber":"0001",
+    "hotelCode":1
+}
+
+Add RoomTypes
+===============
+
+http://localhost:7878/roomType/add
+
+{
+    "roomPrice":2300,
+    "roomDesc":"Modurate Room",
+    "roomId":1
+}
+
+
+Add Employees :
+================
+
+http://localhost:7878/emp/add
+
+
+
