@@ -83,4 +83,17 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 		return model;
 	}
 
+	@Override
+	public List<RoomTypeRequest> fetchAll() {
+		List<RoomTypeRequest> models = new ArrayList<>();
+		List<RoomType> roomTypes = repo.findAll();
+		roomTypes.stream().forEach(roomType -> {
+			RoomTypeRequest model = new RoomTypeRequest();
+			BeanUtils.copyProperties(roomType, model);
+			model.setRoomId(roomType.getRoomId().getId());
+			models.add(model);
+		});
+		return models;
+	}
+
 }

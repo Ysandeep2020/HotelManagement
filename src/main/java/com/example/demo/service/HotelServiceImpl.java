@@ -1,10 +1,15 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Employee;
 import com.example.demo.entity.Hotel;
+import com.example.demo.model.EmployeeRequest;
 import com.example.demo.model.HotelRequest;
 import com.example.demo.repository.HotelRepository;
 
@@ -29,6 +34,18 @@ public class HotelServiceImpl implements HotelService {
 		Hotel hotel = hotelRepo.findById(id).orElseThrow(() -> new Exception("Hotel Not found with :" + id));
 		BeanUtils.copyProperties(hotel, model);
 		return model;
+	}
+
+	@Override
+	public List<HotelRequest> fetchAll() {
+		List<HotelRequest> models = new ArrayList<>();
+		List<Hotel> hotels = hotelRepo.findAll();
+		hotels.stream().forEach(hotel -> {
+			HotelRequest model = new HotelRequest();
+			BeanUtils.copyProperties(hotel, model);
+			models.add(model);
+		});
+		return models;
 	}
 
 }

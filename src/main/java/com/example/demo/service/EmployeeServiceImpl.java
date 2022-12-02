@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -51,6 +52,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 		BeanUtils.copyProperties(emp, model);
 		model.setHotelId(emp.getHotelId().getId());
 		return model;
+	}
+
+	@Override
+	public List<EmployeeRequest> fetchAll() {
+		List<EmployeeRequest> models = new ArrayList<>();
+		List<Employee> emps = repo.findAll();
+		emps.stream().forEach(emp -> {
+			EmployeeRequest model = new EmployeeRequest();
+			BeanUtils.copyProperties(emp, model);
+			model.setHotelId(emp.getHotelId().getId());
+			models.add(model);
+		});
+		return models;
+
 	}
 
 }

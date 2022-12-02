@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +23,14 @@ public class EmployeeController {
 	public String add(@RequestBody EmployeeRequest request) throws Exception {
 		return service.add(request);
 	}
-	
+
 	@GetMapping("/{id}")
 	public EmployeeRequest getById(@PathVariable int id) throws Exception {
 		return service.findById(id);
+	}
+
+	@GetMapping("/all")
+	public List<EmployeeRequest> findAll() throws Exception {
+		return service.fetchAll();
 	}
 }

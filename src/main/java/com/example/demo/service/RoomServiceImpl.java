@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +46,19 @@ public class RoomServiceImpl implements RoomService {
 		BeanUtils.copyProperties(room, model);
 		model.setHotelCode(room.getHotelCode().getId());
 		return model;
+	}
+
+	@Override
+	public List<RoomRequest> fetchAll() {
+		List<RoomRequest> models = new ArrayList<>();
+		List<Room> rooms = repo.findAll();
+		rooms.stream().forEach(room -> {
+			RoomRequest model = new RoomRequest();
+			BeanUtils.copyProperties(room, model);
+			model.setHotelCode(room.getHotelCode().getId());
+			models.add(model);
+		});
+		return models;
 	}
 
 }

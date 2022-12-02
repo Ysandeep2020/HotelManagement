@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.RoomRequest;
 import com.example.demo.model.RoomTypeRequest;
 import com.example.demo.service.RoomTypeService;
 
@@ -25,6 +28,12 @@ public class RoomTypeController {
 	@GetMapping("/{id}")
 	public RoomTypeRequest getById(@PathVariable int id) throws Exception {
 		return service.findById(id);
+	}
+	
+	
+	@GetMapping("/all")
+	public List<RoomTypeRequest> findAll() throws Exception {
+		return service.fetchAll();
 	}
 
 //	/**
