@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +34,15 @@ public class RoomServiceImpl implements RoomService {
 		int preTotal = hotel.getTotalRoom();
 		hotel.setTotalRoom(preTotal + 1);
 		return hotel;
+	}
+
+	@Override
+	public RoomRequest findById(int id) throws Exception {
+		RoomRequest model = new RoomRequest();
+		Room room = repo.findById(id).orElseThrow(() -> new Exception("No Room with id:" + id));
+		BeanUtils.copyProperties(room, model);
+		model.setHotelCode(room.getHotelCode().getId());
+		return model;
 	}
 
 }

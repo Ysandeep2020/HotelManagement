@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
+import com.example.demo.entity.Role;
 
 public class EmployeeRequest {
 
@@ -15,9 +15,7 @@ public class EmployeeRequest {
 	private String password;
 	private double salary;
 	private int hotelId;
-
-	private List<RoleRequest> roles;
-
+	private List<Role> roles;
 
 	public String getFirstName() {
 		return firstName;
@@ -29,6 +27,14 @@ public class EmployeeRequest {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	public void setLastName(String lastName) {
@@ -89,14 +95,6 @@ public class EmployeeRequest {
 
 	public void setHotelId(int hotelId) {
 		this.hotelId = hotelId;
-	}
-
-	public List<RoleRequest> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<RoleRequest> roles) {
-		this.roles = roles;
 	}
 
 	@Override

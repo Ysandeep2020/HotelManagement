@@ -2,10 +2,10 @@ package com.example.demo.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,16 +22,15 @@ public class Room {
 	@Column(name = "room_number")
 	private String roomNumber;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "hotel_code")
 	private Hotel hotelCode;
 
 	@OneToMany(mappedBy = "roomId")
+	@JsonIgnore
 	private List<RoomType> roomType;
 
-	
-	
-	
 	public List<RoomType> getRoomType() {
 		return roomType;
 	}

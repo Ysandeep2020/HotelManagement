@@ -6,4 +6,6 @@ public interface EmployeeService {
 
 	String add(EmployeeRequest request) throws Exception;
 
+	EmployeeRequest findById(int id) throws Exception;
+
 }

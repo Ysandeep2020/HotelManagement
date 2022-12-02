@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,16 +26,17 @@ public class Hotel {
 	private String phone;
 	@Column(name = "total_room")
 	private int totalRoom;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	@Column(name = "star_rating")
 	private int rating;
 	// Add rooms
 	@OneToMany(mappedBy = "hotelCode")
+	@JsonIgnore
 	private List<Room> rooms;
 
-	@OneToMany(mappedBy = "hotelId", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hotelId", cascade = CascadeType.DETACH)
 	private List<Employee> employees;
 
 	public List<Employee> getEmployees() {

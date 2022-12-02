@@ -6,4 +6,6 @@ public interface RoomService {
 
 	String add(RoomRequest request) throws Exception;
 
+	RoomRequest findById(int id) throws Exception;
+
 }

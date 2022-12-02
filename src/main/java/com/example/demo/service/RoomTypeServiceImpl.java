@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +71,16 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 			});
 		}
 		return attachments;
+	}
+
+	@Override
+	public RoomTypeRequest findById(int id) throws Exception {
+		RoomTypeRequest model = new RoomTypeRequest();
+		RoomType roomType = repo.findById(id).orElseThrow(() -> new Exception("No RoomType with id:" + id));
+		BeanUtils.copyProperties(roomType, model);
+		int id2 = roomType.getRoomId().getId();
+		model.setRoomId(id2);
+		return model;
 	}
 
 }

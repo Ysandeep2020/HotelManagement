@@ -23,5 +23,12 @@ public class HotelServiceImpl implements HotelService {
 		return "Hotel Added !";
 	}
 
+	@Override
+	public HotelRequest findById(int id) throws Exception {
+		HotelRequest model = new HotelRequest();
+		Hotel hotel = hotelRepo.findById(id).orElseThrow(() -> new Exception("Hotel Not found with :" + id));
+		BeanUtils.copyProperties(hotel, model);
+		return model;
+	}
 
 }

@@ -1,9 +1,25 @@
 package com.example.demo.model;
 
+import java.util.List;
+
+import com.example.demo.entity.RoomType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 public class RoomRequest {
 
 	private String roomNumber;
 	private int hotelCode;
+	@JsonProperty(access = Access.READ_ONLY)
+	private List<RoomType> roomType;
+
+	public List<RoomType> getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(List<RoomType> roomType) {
+		this.roomType = roomType;
+	}
 
 	public String getRoomNumber() {
 		return roomNumber;
@@ -23,7 +39,7 @@ public class RoomRequest {
 
 	@Override
 	public String toString() {
-		return "RoomRequest [roomNumber=" + roomNumber + ", hotelCode=" + hotelCode + "]";
+		return "RoomRequest [roomNumber=" + roomNumber + ", hotelCode=" + hotelCode + ", roomType=" + roomType + "]";
 	}
 
 	public RoomRequest(String roomNumber, int hotelCode) {

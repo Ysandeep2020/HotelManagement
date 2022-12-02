@@ -1,18 +1,13 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.entity.Attachment;
 import com.example.demo.model.RoomTypeRequest;
 import com.example.demo.service.RoomTypeService;
 
@@ -25,6 +20,11 @@ public class RoomTypeController {
 	@PostMapping("/add")
 	public String add(@RequestBody RoomTypeRequest request) throws Exception {
 		return service.add(request);
+	}
+
+	@GetMapping("/{id}")
+	public RoomTypeRequest getById(@PathVariable int id) throws Exception {
+		return service.findById(id);
 	}
 
 //	/**
